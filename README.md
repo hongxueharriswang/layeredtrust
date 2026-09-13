@@ -1,4 +1,4 @@
-# trustlib
+# layeredtrust
 
 > **A Unified Multi-Layer Mathematical Framework for Trust-Based Decision Making in Multi-Agent Systems (MAS)**
 
@@ -8,7 +8,7 @@
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-none-success.svg)](#installation)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](#changelog)
 
-`trustlib` implements a mathematically consistent, computationally tractable framework for trust-based decision making across both **dyadic** (one trustor, one trustee) and **collective** (one trustor, a structured group of trustees) relationships in multi-agent systems. It synthesizes cognitive psychology, Bayesian inference, game theory, dynamical systems, and network science into a single, reduction-consistent model.
+`layeredtrust` implements a mathematically consistent, computationally tractable framework for trust-based decision making across both **dyadic** (one trustor, one trustee) and **collective** (one trustor, a structured group of trustees) relationships in multi-agent systems. It synthesizes cognitive psychology, Bayesian inference, game theory, dynamical systems, and network science into a single, reduction-consistent model.
 
 This library accompanies the manuscript:
 
@@ -18,7 +18,7 @@ This library accompanies the manuscript:
 
 ## Table of Contents
 
-- [Why trustlib?](#why-trustlib)
+- [Why layeredtrust?](#why-layeredtrust)
 - [Features](#features)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
@@ -56,13 +56,13 @@ This library accompanies the manuscript:
 
 ---
 
-## Why trustlib?
+## Why layeredtrust?
 
 Most computational trust models focus on **dyadic** relationships: one trustor assessing a single trustee. Real-world multi-agent systems, however, routinely demand trust in **groups**—surgical teams, autonomous vehicle platoons, DAO multi-signature wallets, hybrid human-AI fact-checking collectives—where success depends on internal coordination, heterogeneity, and decision rules (quorums, weakest-link dependencies, redundancy).
 
-`trustlib` bridges this gap:
+`layeredtrust` bridges this gap:
 
-| Capability | Dyadic models | `trustlib` |
+| Capability | Dyadic models | `layeredtrust` |
 |-----------|:-------------:|:----------:|
 | Individual trustee | ✅ | ✅ |
 | **Structured group trustee** | ❌ | ✅ |
@@ -96,21 +96,21 @@ Most computational trust models focus on **dyadic** relationships: one trustor a
 
 ## Installation
 
-`trustlib` has **no external dependencies** and requires Python 3.9+.
+`layeredtrust` has **no external dependencies** and requires Python 3.9+.
 
 ### Option 1 — Copy the single file
 
-Drop `trustlib.py` into your project and import it:
+Drop `layeredtrust.py` into your project and import it:
 
 ```python
-from trustlib import Trustee, Trustor, TrustGroup, TrustScenario
+from layeredtrust import Trustee, Trustor, TrustGroup, TrustScenario
 ```
 
 ### Option 2 — Install as a package
 
 ```bash
-git clone https://github.com/<your-username>/trustlib.git
-cd trustlib
+git clone https://github.com/<your-username>/layeredtrust.git
+cd layeredtrust
 pip install -e .
 ```
 
@@ -125,7 +125,7 @@ pip install -e ".[dev]"
 ## Quick Start
 
 ```python
-from trustlib import Trustee, Trustor, TrustScenario
+from layeredtrust import Trustee, Trustor, TrustScenario
 
 # A buyer (trustor) evaluates an Amazon seller (trustee)
 buyer  = Trustor("buyer", trust_propensity=0.6, risk_aversion=0.2)
@@ -149,7 +149,7 @@ print(f"Decision:         {'BUY' if decision else 'DO NOT BUY'}")
 For a group trustee:
 
 ```python
-from trustlib import TrustGroup, AggregationType
+from layeredtrust import TrustGroup, AggregationType
 
 trucks = [Trustee(f"T{i}", a=92, b=8) for i in range(4)]
 trucks.append(Trustee("T4", a=40, b=60))  # sensor glitch
@@ -203,7 +203,7 @@ where $\sigma^2$ is the variance of individual trust scores and $H$ is their Sha
 
 > For $m = 1$, the Group Trust Extension reduces **exactly** to the dyadic model.
 
-This is verified in `test_trustlib.py::TestUnification`.
+This is verified in `test_layeredtrust.py::TestUnification`.
 
 ---
 
@@ -212,7 +212,7 @@ This is verified in `test_trustlib.py::TestUnification`.
 ### 1. Dyadic Trust: E-Commerce Seller
 
 ```python
-from trustlib import Trustee, Trustor, TrustScenario
+from layeredtrust import Trustee, Trustor, TrustScenario
 
 buyer  = Trustor("buyer", trust_propensity=0.6, risk_aversion=0.2)
 seller = Trustee("seller", a=130, b=20, discount_factor=0.8)
@@ -227,7 +227,7 @@ print(scenario.report())
 ### 2. Dyadic Trust with Asymmetric Dynamics
 
 ```python
-from trustlib import Trustee
+from layeredtrust import Trustee
 
 car = Trustee("robotaxi", a=10, b=1, discount_factor=0.9)
 car.trust = 0.65
@@ -243,7 +243,7 @@ print(f"Recovery time: {car.recovery_time(target=0.8):.2f} rides")  # 14.70
 ### 3. Group Trust: Series (Weakest-Link)
 
 ```python
-from trustlib import Trustee, TrustGroup, AggregationType
+from layeredtrust import Trustee, TrustGroup, AggregationType
 
 trucks = [Trustee(f"T{i}", a=92, b=8) for i in range(4)]
 trucks.append(Trustee("T4", a=40, b=60))
@@ -285,7 +285,7 @@ print(dao.aggregate_trust())     # ~0.87
 ### 6. Group Trust: Custom Aggregation
 
 ```python
-from trustlib import TrustGroup, AggregationType, harmonic_mean
+from layeredtrust import TrustGroup, AggregationType, harmonic_mean
 
 team = TrustGroup(
     [Trustee("Surgeon", a=95, b=5),
@@ -304,7 +304,7 @@ print(team.aggregate_trust())
 ### 7. Network Propagation
 
 ```python
-from trustlib import TrustNetwork
+from layeredtrust import TrustNetwork
 
 net = TrustNetwork(4)
 net.set_direct(0, 1, 0.9)
@@ -321,7 +321,7 @@ for row in net.direct:
 ### 8. Proof-of-Concept Simulation
 
 ```python
-from trustlib import simulate_comparison
+from layeredtrust import simulate_comparison
 
 results = simulate_comparison(n_scenarios=2000, seed=42)
 print(f"{'Model':<12}{'Accuracy':>12}{'Brier':>12}")
@@ -514,7 +514,7 @@ Aggregate trust: 0.940
 ## Testing
 
 ```bash
-python -m unittest test_trustlib -v
+python -m unittest test_layeredtrust -v
 ```
 
 The test suite covers:
@@ -549,7 +549,7 @@ The test suite covers:
 ### Custom Aggregation Functions
 
 ```python
-from trustlib import TrustGroup, AggregationType
+from layeredtrust import TrustGroup, AggregationType
 
 def trimmed_mean(values, trim=0.1):
     s = sorted(values)
@@ -582,16 +582,16 @@ Supply `entropy_override` to the `TrustGroup` constructor.
 
 ## Citation
 
-If you use `trustlib` in your research, please cite:
+If you use `layeredtrust` in your research, please cite:
 
 ```bibtex
-@article{wang2026trustlib,
+@article{wang2026layeredtrust,
   author  = {Wang, Harris},
   title   = {Trust-Based Decision-Making for Multi-Agent Systems:
              A Unified Multi-Layer Mathematical Framework},
   journal = {Manuscript under review},
   year    = {2026},
-  note    = {Library: \texttt{trustlib} v1.0.0}
+  note    = {Library: \texttt{layeredtrust} v1.0.0}
 }
 ```
 
@@ -649,6 +649,6 @@ The framework synthesizes ideas from the Mayer–Davis–Schoorman cognitive tru
 
 **Maintainer:** Harris Wang · [harriw@athabascau.ca](mailto:harriw@athabascau.ca)
 
-**Repository:** [github.com/\<your-username\>/trustlib](https://github.com/)
+**Repository:** [github.com/\<your-username\>/layeredtrust](https://github.com/)
 
-**Issues:** [github.com/\<your-username\>/trustlib/issues](https://github.com/)
+**Issues:** [github.com/\<your-username\>/layeredtrust/issues](https://github.com/)

@@ -1,17 +1,17 @@
 """
-test_trustlib.py — Unit tests for the trustlib library.
-Run: python -m unittest test_trustlib -v
+test_layeredtrust.py — Unit tests for the layeredtrust library.
+Run: python -m unittest test_layeredtrust -v
 """
 
 import math
 import unittest
 
-from trustlib import (
+from layeredtrust import (
     Trustee, Trustor, TrustGroup, TrustScenario, TrustNetwork,
     AggregationType, harmonic_mean, geometric_mean,
     sigmoid, strategic_factor,
 )
-from trustlib import _binomial_sf, _beta_binomial_sf
+from layeredtrust import _binomial_sf, _beta_binomial_sf
 
 
 class TestMathHelpers(unittest.TestCase):

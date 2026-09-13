@@ -1,5 +1,5 @@
 """
-trustlib — A Unified Multi-Layer Mathematical Framework for Trust-Based
+layeredtrust — A Unified Multi-Layer Mathematical Framework for Trust-Based
 Decision Making in Multi-Agent Systems (MAS).
 
 Reference:
@@ -20,7 +20,7 @@ The dyadic model is a special case of the Group Trust Extension
 
 Basic usage
 -----------
->>> from trustlib import Trustee, Trustor, TrustScenario
+>>> from layeredtrust import Trustee, Trustor, TrustScenario
 >>> buyer  = Trustor("buyer", trust_propensity=0.6, risk_aversion=0.2)
 >>> seller = Trustee("seller", a=130, b=20, discount_factor=0.8)
 >>> sc = TrustScenario("Amazon", buyer, seller,
@@ -31,7 +31,7 @@ Basic usage
 
 Group usage
 -----------
->>> from trustlib import TrustGroup, AggregationType
+>>> from layeredtrust import TrustGroup, AggregationType
 >>> trucks = [Trustee(f"T{i}", a=92, b=8) for i in range(4)]
 >>> trucks.append(Trustee("T4", a=40, b=60))
 >>> platoon = TrustGroup(trucks, aggregation=AggregationType.SERIES,
@@ -760,11 +760,11 @@ def simulate_comparison(n_scenarios: int = 2000,
 
 
 # ===========================================================================
-# 9. Demo (run as `python trustlib.py`)
+# 9. Demo (run as `python layeredtrust.py`)
 # ===========================================================================
 
 def _demo() -> None:  # pragma: no cover
-    print(f"trustlib v{__version__} — demo of the five paper case studies\n")
+    print(f"layeredtrust v{__version__} — demo of the five paper case studies\n")
 
     # Case 1: Autonomous vehicle
     passenger = Trustor("passenger", trust_propensity=0.7, risk_aversion=0.15)

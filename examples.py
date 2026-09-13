@@ -3,7 +3,7 @@ examples.py — Reproduces the five case studies from the paper.
 Run: python examples.py
 """
 
-from trustlib import (
+from layeredtrust import (
     Trustee, Trustor, TrustGroup, TrustScenario,
     AggregationType, harmonic_mean, simulate_comparison,
 )
@@ -84,7 +84,7 @@ def case_5_fact_checking():
 
 def case_6_network_propagation():
     print("\n=== Case 6: Network Propagation (Layer 6) ===")
-    from trustlib import TrustNetwork
+    from layeredtrust import TrustNetwork
     net = TrustNetwork(4)
     # Direct trust: agent 0 trusts agent 1 strongly, agent 1 trusts 2, etc.
     net.set_direct(0, 1, 0.9)

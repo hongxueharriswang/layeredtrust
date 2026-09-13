@@ -3,7 +3,7 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "trustlib"
+name = "layeredtrust"
 version = "1.0.0"
 description = "Unified Multi-Layer Trust Framework for Multi-Agent Systems"
 readme = "README.md"
@@ -22,4 +22,4 @@ dependencies = []  # pure standard library
 dev = ["pytest>=7.0", "numpy>=1.24"]
 
 [tool.setuptools]
-py-modules = ["trustlib"]
+py-modules = ["layeredtrust"]

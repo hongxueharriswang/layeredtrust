@@ -1,4 +1,4 @@
-from trustlib import Trustee, Trustor, TrustGroup, TrustScenario, AggregationType
+from layeredtrust import Trustee, Trustor, TrustGroup, TrustScenario, AggregationType
 
 # --- Dyadic ---
 buyer  = Trustor("buyer", trust_propensity=0.6, risk_aversion=0.2)
@@ -25,7 +25,7 @@ dao = TrustGroup(signers, aggregation=AggregationType.QUORUM,
 print(dao.aggregate_trust())       # ~0.87
 
 # --- Simulation study ---
-from trustlib import simulate_comparison
+from layeredtrust import simulate_comparison
 results = simulate_comparison(n_scenarios=2000, seed=42)
 for name, r in results.items():
     print(f"{name:<10} acc={r['accuracy']:.4f}  brier={r['brier']:.4f}")
